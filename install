@@ -1,0 +1,70 @@
+#!/bin/bash
+# +----------------------------------------------------------------------------+
+# | XMMEEC-remote v0.2 * Remote scripts for XMMEEC application                 |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | install                                                                    |
+# | Installer script                                                           |
+# +----------------------------------------------------------------------------+
+#
+#   This program is free software: you can redistribute it and/or modify it
+# under the terms of the European Union Public License 1.1 version.
+#
+#   This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.
+
+line()
+{
+  for ((i=0; i<${#SWCR}; i++))
+  do
+    echo -n "-"
+  done
+  echo ""
+}
+
+copy()
+{
+  sudo cp $1 $2
+  echo "  $1 -> $2"
+}
+
+# constans
+SWN1="XMMEEC-remote"
+SWN2="xmmeec-remote"
+SWCR=`cat documents/copyright`
+SWV=`cat documents/VERSION`
+INSTDIR="local"
+SUBDIRS="/usr/$INSTDIR/bin \
+         /usr/$INSTDIR/share \
+         /usr/$INSTDIR/share/doc \
+         /usr/$INSTDIR/share/doc/$SWN2 \
+         /usr/$INSTDIR/share/man \
+         /usr/$INSTDIR/share/man/man1"
+README="/usr/$INSTDIR/share/doc/$SWN2/README"
+
+# installer
+echo -e "\n$SWN1 v$SWV installer script"
+echo "$SWCR"
+line
+echo -e "\n  This program is free software: you can redistribute it and/or modify it
+under the terms of the European Union Public License 1.1 version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.\n"
+sleep 3
+
+echo -e "\nInstalling..."
+echo "- creating directories:"
+sudo mkdir --parents /usr/$INSTDIR 2> /dev/null
+for D in $SUBDIRS
+do
+  sudo mkdir --parents $D 2> /dev/null
+  echo "  $D"
+done
+echo "- copying files:"
+copy "LICENCE" "/usr/$INSTDIR/share/doc/$SWN2/COPYING"
+copy "documents/*" "/usr/$INSTDIR/share/doc/$SWN2/"
+copy "manuals/*.1.gz" "/usr/$INSTDIR/share/man/man1/"
+copy "scripts/*" "/usr/$INSTDIR/bin/"
+echo "Done."

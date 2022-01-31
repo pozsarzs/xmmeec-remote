@@ -1,0 +1,71 @@
+#!/bin/bash
+# +----------------------------------------------------------------------------+
+# | XMMEEC-remote v0.2 * Remote scripts for XMMEEC application                 |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | xmmeec-download                                                            |
+# | Download envir.ini to remote computer                                      |
+# +----------------------------------------------------------------------------+
+#
+#   This program is free software: you can redistribute it and/or modify it
+# under the terms of the European Union Public License 1.1 version.
+#
+#   This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.
+
+# Exit codes:
+#   0: normal exit
+#   1: command line parameter is missing
+#   2: configuration directory is missing
+#   3: cannot copy configuration file
+
+searchconfigdirectory()
+{
+  CFGDIR="/etc/$1"
+  if [ ! -d $CFGDIR ]
+  then
+    CFGDIR="/usr/local/etc/$1"
+    if [ ! -d $CFGDIR ]
+    then
+      exit 2
+    fi
+  fi
+}
+
+copyfile()
+{
+  TGTDIR="/tmp/etc/"
+  mkdir -p $TGTDIR
+  chmod 777 $TGTDIR
+  if [ $1 -eq 0 ];
+  then
+    cp $CFGDIR"/envir.ini" $TGTDIR
+    if [ ! $? -eq 0 ]; then exit 3; fi
+  else
+    cp $CFGDIR"/envir-ch"$1".ini" $TGTDIR
+    if [ ! $? -eq 0 ]; then exit 3; fi
+  fi
+}
+
+usage()
+{
+  echo "Usage:"
+  echo "    $0 type [channel]"
+  echo "    $0 mm3d|mm5d|mm8d [1..8]"
+  echo ""
+}
+
+# main function
+if [ $# -eq 0 ];
+then
+  usage
+  exit 1
+fi
+searchconfigdirectory $1
+if [ $# -eq 2 ];
+then
+  copyfile $2
+else
+  copyfile 0
+fi
+exit 0

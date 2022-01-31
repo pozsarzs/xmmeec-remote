@@ -1,0 +1,80 @@
+#!/bin/bash
+# +----------------------------------------------------------------------------+
+# | XMMEEC-remote v0.2 * Remote scripts for XMMEEC application                 |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | xmmeec-upload                                                              |
+# | Upload envir.ini from remote computer                                      |
+# +----------------------------------------------------------------------------+
+#
+#   This program is free software: you can redistribute it and/or modify it
+# under the terms of the European Union Public License 1.1 version.
+#
+#   This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.
+
+# Exit codes:
+#   0: normal exit
+#   1: command line parameter is missing
+#   2: configuration directory is missing
+#   3: cannot copy configuration file
+#   4: cannot restart daemon
+
+searchconfigdirectory()
+{
+  CFGDIR="/etc/$1"
+  if [ ! -d $CFGDIR ]
+  then
+    CFGDIR="/usr/local/etc/$1"
+    if [ ! -d $CFGDIR ]
+    then
+      exit 2
+    fi
+  fi
+}
+
+copyfile()
+{
+  SRCDIR="/tmp/etc"
+  if [ $1 -eq 0 ];
+  then
+    sudo cp $SRCDIR"/envir.ini" $CFGDIR
+    if [ ! $? -eq 0 ]; then exit 3; fi
+  else
+    sudo cp $SRCDIR"/envir-ch"$1".ini" $CFGDIR
+    if [ ! $? -eq 0 ]; then exit 3; fi
+  fi
+}
+
+restartdaemon()
+{
+  $1-stopdaemon
+  if [ ! $? -eq 0 ]; then exit 4; fi
+  $1-startdaemon
+  if [ ! $? -eq 0 ]; then exit 4; fi
+}
+
+usage()
+{
+  echo ""
+  echo "Usage:"
+  echo "    $0 type [channel]"
+  echo "    $0 mm3d|mm5d|mm8d [1..8]"
+  echo ""
+}
+
+# main function
+if [ $# -eq 0 ];
+then
+  usage
+  exit 1
+fi
+searchconfigdirectory $1
+if [ $# -eq 2 ];
+then
+  copyfile $2
+else
+  copyfile 0
+fi
+restartdaemon $1
+exit 0

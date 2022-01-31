@@ -1,0 +1,56 @@
+#!/bin/bash
+# +----------------------------------------------------------------------------+
+# | XMMEEC-remote v0.2 * Remote scripts for XMMEEC application                 |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | uninstall                                                                  |
+# | Uninstaller script                                                         |
+# +----------------------------------------------------------------------------+
+
+#   This program is free software: you can redistribute it and/or modify it
+# under the terms of the European Union Public License 1.1 version.
+#
+#   This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.
+
+line()
+{
+  for ((i=0; i<${#SWCR}; i++))
+  do
+    echo -n "-"
+  done
+  echo ""
+}
+
+erase()
+{
+  sudo rm --force $1 2> /dev/null
+  echo "  $1"
+}
+
+erasedir()
+{
+  sudo rmdir $1 2> /dev/null
+  echo "  $1"
+}
+
+# constants
+SWN1="XMMEEC-remote"
+SWN2="xmmeec-remote"
+SWCR=`cat documents/copyright`
+SWV=`cat documents/VERSION`
+INSTDIR="local"
+
+# uninstaller
+echo -e "\n$SWN1 v$SWV uninstaller script"
+echo "$SWCR"
+line
+sleep 1
+echo "Uninstalling..."
+echo "- removing files:"
+erase "/usr/$INSTDIR/bin/$SWN2*"
+erase "/usr/$INSTDIR/share/doc/$SWN2/*"
+erase "/usr/$INSTDIR/share/man/man1/$SWN2*"
+echo "- removing directories:"
+erasedir "/usr/$INSTDIR/share/doc/$SWN2/"
+echo "Done."
