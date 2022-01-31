@@ -1,0 +1,9 @@
+0d769e24c1469adc8b61266c1dbd82d6  usr/bin/xmmeec-download
+606d115d37705dbe0b1a306164c27f6b  usr/bin/xmmeec-upload
+4994f4cacf022e01ffda29f5627f7ab5  usr/share/doc/xmmeec-remote/AUTHORS
+d483402cfe0bbb1a4612a4609b2402d2  usr/share/doc/xmmeec-remote/changelog.gz
+319d80ebf0d5fc4aea12f82c183f1d13  usr/share/doc/xmmeec-remote/copyright
+514b7083a63f7ece34f63b2f78737a48  usr/share/doc/xmmeec-remote/README
+41cf1884673a8ad6f57cff3abca53ee2  usr/share/doc/xmmeec-remote/VERSION
+dfd50337045bec5fefade516a6940924  usr/share/man/man1/xmmeec-download.1.gz
+e25596faee7ab3990ff79db1627f760b  usr/share/man/man1/xmmeec-upload.1.gz

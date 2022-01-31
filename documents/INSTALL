@@ -1,0 +1,16 @@
+Installation instruction for tar.gz package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Installation
+~~~~~~~~~~~~
+  pi@raspberry$ tar -xzf xmmeec-remote-0.2-noarch.tar.gz
+  pi@raspberry$ cd xmmeec-remote
+  pi@raspberry$ ./install
+
+Removing
+~~~~~~~~
+  pi@raspberry$ cd xmmeec-remote
+  pi@raspberry$ ./uninstall
+
+--------------------------------------------------------------------------------------
+ XMMEEC-remote * Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>

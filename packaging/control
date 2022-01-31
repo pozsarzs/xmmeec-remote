@@ -1,0 +1,12 @@
+Package: xmmeec-remote
+Version: 0.2
+Section: misc
+Priority: extra
+Architecture: all
+Installed-Size: 64 kB
+Maintainer: Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>
+Depends: 
+Description: Remote scripts for XMMEEC application
+ This software is part of XMMEEC application. XMMEEC is a
+ remote environment characteristic editor for MM3D, MM5D and
+ MM8D mushroom growing house controller device.
