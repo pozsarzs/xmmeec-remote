@@ -1,3 +1,10 @@
+ XMMEEC-remote (0.3) unstable; urgency=low
+
+  * Added get/set output override.
+  * Initial release.
+
+ -- Pozsar Zsolt <pozsar.zsolt@szerafingomba.hu>  Sun, 06 Jan 2022 14:00:00
+
  XMMEEC-remote (0.2) unstable; urgency=low
 
   * Initial release.

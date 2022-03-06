@@ -7,7 +7,7 @@ GitHub: <https://github.com/pozsarzs/xmmeec-remote>
 
  - architecture:       (all)
  - operation system:   Raspbian OS, Debian GNU/Linux
- - version:            v0.2
+ - version:            v0.3
  - language:           en
  - licence:            EUPL v1.1
  - user interface:     CLI

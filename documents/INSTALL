@@ -3,7 +3,7 @@ Installation instruction for tar.gz package
 
 Installation
 ~~~~~~~~~~~~
-  pi@raspberry$ tar -xzf xmmeec-remote-0.2-noarch.tar.gz
+  pi@raspberry$ tar -xzf xmmeec-remote-0.3-noarch.tar.gz
   pi@raspberry$ cd xmmeec-remote
   pi@raspberry$ ./install
 

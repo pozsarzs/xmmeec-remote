@@ -1,0 +1,64 @@
+#!/bin/bash
+# +----------------------------------------------------------------------------+
+# | XMMEEC-remote v0.3 * Remote scripts for XMMEEC application                 |
+# | Copyright (C) 2019-2022 Pozsár Zsolt <pozsar.zsolt@szerafingomba.hu>       |
+# | xmmeec-setoverride                                                         |
+# | Set override on remote computer                                            |
+# +----------------------------------------------------------------------------+
+#
+#   This program is free software: you can redistribute it and/or modify it
+# under the terms of the European Union Public License 1.1 version.
+#
+#   This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.
+
+# Exit codes:
+#   0: normal exit
+#   1: command line parameter is missing
+
+STAT=("off" "neutral" "on")
+OUT3=("out1" "out2" "out3" "out4")
+OUT5=("heater" "light" "ventilator" "humidifier")
+OUT8=("lamp" "ventilator" "heater")
+
+setoverride()
+{
+  if [ $1 == 'mm3d' ]
+  then
+    $1-override ${OUT3[0]} ${STAT[$3]}
+    $1-override ${OUT3[1]} ${STAT[$4]}
+    $1-override ${OUT3[2]} ${STAT[$5]}
+    $1-override ${OUT3[3]} ${STAT[$6]}
+  fi
+  if [ $1 == 'mm5d' ]
+  then
+    $1-override ${OUT5[0]} ${STAT[$3]}
+    $1-override ${OUT5[1]} ${STAT[$4]}
+    $1-override ${OUT5[2]} ${STAT[$5]}
+    $1-override ${OUT5[3]} ${STAT[$6]}
+  fi
+  if [ $1 == 'mm8d' ]
+  then
+    $1-override $2 ${OUT8[0]} ${STAT[$3]}
+    $1-override $2 ${OUT8[1]} ${STAT[$4]}
+    $1-override $2 ${OUT8[2]} ${STAT[$5]}
+  fi
+}
+
+usage()
+{
+  echo "Usage:"
+  echo "    $0 type channel status1 status2 status3 status4"
+  echo "    $0 mm3d|mm5d|mm8d 0..8 0..2 0..2 0..2 0..2"
+  echo ""
+}
+
+# main function
+if [ $# -lt 6 ];
+then
+  usage
+  exit 1
+fi
+setoverride $1 $2 $3 $4 $5 $6
+exit 0

@@ -1,5 +1,5 @@
-XMMEEC-remote v0.2 * Remote scripts for XMMEEC application
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+XMMEEC-remote * Remote scripts for XMMEEC application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. About software
 -----------------
@@ -7,15 +7,16 @@ XMMEEC-remote v0.2 * Remote scripts for XMMEEC application
   This software is part of XMMEEC application. XMMEEC is a remote environment
 characteristic editor for MM3D, MM5D and MM8D mushroom growing house controller
 device. Scripts of this software are used to download and upload environment
-settings and restart the background service on the control device.
+settings, set override of outputs and restart the background service on the
+control device.
   This software is useable on linux.
 
 2. How to get installer package for my OS?
 ------------------------------------------
 a. Visit homepage (see later) to download installer packages:
 
-  Raspberry Pi OS and Debian GNU/Linux: xmmeec-remote-0.2-noarch.tar.gz
-                                        xmmeec-remote_0.2-1_all.deb
+  Raspberry Pi OS and Debian GNU/Linux: xmmeec-remote-0.3-noarch.tar.gz
+                                        xmmeec-remote_0.3-1_all.deb
 
 b. Download from Github
 
