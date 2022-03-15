@@ -60,6 +60,7 @@ getoverride()
       fi
       echo ${STAT[$I]}
     done
+    echo ${STAT[$I]}
   fi
 }
 
